@@ -86,7 +86,7 @@ export class Server {
     });
   }
 
-  public listen(port: number, callback: () => void): void {
+  public listen(port: number,host:string, callback: () => void): void {
     this.httpServer.listen(port, callback);
   }
   
