@@ -63,7 +63,7 @@ function updateUserList(socketIds) {
   });
 }
 
-const socket = io.connect("localhost:5000");
+const socket = io.connect("https://video-call-56bb.onrender.com");
 
 socket.on("update-user-list", ({ users }) => {
   updateUserList(users);
