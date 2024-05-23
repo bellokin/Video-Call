@@ -8,5 +8,5 @@ const host = process.env.HOST || "0.0.0.0"; // Use HOST environment variable or 
 const server = new Server();
 
 server.listen(port, host, () => {
-  console.log(`Server is listening on http://${port}`);
+  console.log(`Server is listeningxa on http://${port}`);
 });
