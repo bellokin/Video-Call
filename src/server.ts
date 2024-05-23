@@ -10,14 +10,7 @@ export class Server {
 
   private activeSockets: string[] = [];
 
-  private readonly DEFAULT_PORT = 5000;
-  private readonly host = "0.0.0.0";
-
   constructor() {
-    this.initialize();
-  }
-
-  private initialize(): void {
     this.app = express();
     this.httpServer = createServer(this.app);
     this.io = socketIO(this.httpServer);
@@ -33,7 +26,7 @@ export class Server {
 
   private configureRoutes(): void {
     this.app.get("/", (req, res) => {
-      res.sendFile("index.html");
+      res.sendFile(path.join(__dirname, "../public/index.html"));
     });
   }
 
@@ -88,10 +81,7 @@ export class Server {
     });
   }
 
-  public listen(callback: (port: number,host:string ) => void): void {
-    this.httpServer.listen(this.DEFAULT_PORT, this.host,() => {
-      callback(this.DEFAULT_PORT,this.host);
-    });
+  public listen(port: number, host: string, callback: () => void): void {
+    this.httpServer.listen(port, host, callback);
   }
 }
- 
