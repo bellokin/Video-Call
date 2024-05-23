@@ -10,6 +10,7 @@ export class Server {
 
   private activeSockets: string[] = [];
 
+  private readonly DEFAULT_PORT = 5000;
   constructor() {
     this.app = express();
     this.httpServer = createServer(this.app);
@@ -81,7 +82,9 @@ export class Server {
     });
   }
 
-  public listen(port: number, host: string, callback: () => void): void {
-    this.httpServer.listen(port, host, callback);
+  public listen(callback: (port: number) => void): void {
+    this.httpServer.listen(this.DEFAULT_PORT, () => {
+      callback(this.DEFAULT_PORT);
+    });
   }
 }
